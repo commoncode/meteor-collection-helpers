@@ -69,8 +69,21 @@ Meteor.users.helpers({
 });
 ```
 
+
+### Shared helpers
+
+You can apply helpers to many collections at once by defining some common helpers. You can define these as many times as you like so that different groups of collections can share unique sets of shared helpers.
+
+```javascript
+Meteor.Collection.helpers({
+  formattedModifiedAt: function() {
+    return moment(this.modifiedAt).format('MMMM Do YYYY, h:mm a');
+  }
+}, [Books, Authors]);
+```
+
+
 ### Credits
 
 Thanks to [Tom Coleman](https://github.com/tmeasday/) for the idea on the refactor and [Mathieu Bouchard's](https://github.com/matb33/) method to extend Meteor.Collection (used in collection-helpers pre 0.2.0)
-
 
